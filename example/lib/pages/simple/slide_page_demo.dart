@@ -28,6 +28,7 @@ class _SlidePageDemoState extends State<SlidePageDemo> {
     'https://photo.tuchong.com/5040418/f/43305517.jpg',
     'https://photo.tuchong.com/3019649/f/302699092.jpg'
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +56,7 @@ class _SlidePageDemoState extends State<SlidePageDemo> {
                           child: const Text('This is an video'),
                         )
                       : ExtendedImage.network(
+                          loadingWidget: const CircularProgressIndicator(),
                           url,
                           fit: BoxFit.cover,
                         ),
@@ -84,7 +86,9 @@ class _SlidePageDemoState extends State<SlidePageDemo> {
 )
 class SlidePage extends StatefulWidget {
   const SlidePage({this.url});
+
   final String? url;
+
   @override
   _SlidePageState createState() => _SlidePageState();
 }
@@ -132,6 +136,7 @@ class _SlidePageState extends State<SlidePage> {
                 )
               : HeroWidget(
                   child: ExtendedImage.network(
+                    loadingWidget: const CircularProgressIndicator(),
                     widget.url!,
                     enableSlideOutPage: true,
                   ),

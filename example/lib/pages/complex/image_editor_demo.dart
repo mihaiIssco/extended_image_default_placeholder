@@ -81,6 +81,7 @@ class _ImageEditorDemoState extends State<ImageEditorDemo> {
         Expanded(
           child: _memoryImage != null
               ? ExtendedImage.memory(
+            loadingWidget: const CircularProgressIndicator(),
                   _memoryImage!,
                   fit: BoxFit.contain,
                   mode: ExtendedImageMode.editor,
@@ -99,6 +100,7 @@ class _ImageEditorDemoState extends State<ImageEditorDemo> {
                   cacheRawData: true,
                 )
               : ExtendedImage.asset(
+            loadingWidget: const CircularProgressIndicator(),
                   'assets/image.jpg',
                   fit: BoxFit.contain,
                   mode: ExtendedImageMode.editor,

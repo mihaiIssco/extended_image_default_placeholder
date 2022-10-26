@@ -41,6 +41,7 @@ class _SimplePhotoViewDemoState extends State<SimplePhotoViewDemo> {
         itemCount: images.length,
         itemBuilder: (BuildContext context, int index) {
           return ExtendedImage.network(
+            loadingWidget: const CircularProgressIndicator(),
             images[index],
             fit: BoxFit.contain,
             mode: ExtendedImageMode.gesture,

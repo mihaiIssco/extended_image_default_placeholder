@@ -67,6 +67,7 @@ class _PaintImageDemoState extends State<PaintImageDemo> {
           Expanded(
             child: Align(
               child: ExtendedImage.network(
+                loadingWidget: const CircularProgressIndicator(),
                 url,
                 width: 200,
                 height: 200,

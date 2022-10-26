@@ -60,6 +60,7 @@ class _MemoryUsageDemoState extends State<MemoryUsageDemo> {
                       children: <Widget>[
                         Positioned.fill(
                           child: ExtendedImage.network(
+                            loadingWidget: const CircularProgressIndicator(),
                             item.imageUrl,
                             shape: BoxShape.rectangle,
                             // memory usage start

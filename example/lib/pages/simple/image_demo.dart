@@ -97,6 +97,7 @@ class _ImageDemoState extends State<ImageDemo> {
               child: AspectRatio(
                 aspectRatio: 1.0,
                 child: ExtendedImage.network(
+                  loadingWidget: const CircularProgressIndicator(),
                   url,
                   fit: BoxFit.fill,
                   cache: true,

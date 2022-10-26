@@ -18,9 +18,11 @@ class CropImage extends StatelessWidget {
     required this.tuChongItem,
     this.knowImageSize,
   });
+
   final TuChongItem tuChongItem;
   final bool? knowImageSize;
   final int index;
+
   @override
   Widget build(BuildContext context) {
     if (!tuChongItem.hasImage) {
@@ -50,6 +52,7 @@ class CropImage extends StatelessWidget {
     }
 
     return ExtendedImage.network(imageItem.imageUrl,
+        loadingWidget: const CircularProgressIndicator(),
         width: width,
         clearMemoryCacheWhenDispose: false,
         imageCacheName: 'CropImage',

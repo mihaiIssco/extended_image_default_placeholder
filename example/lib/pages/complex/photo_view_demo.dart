@@ -16,6 +16,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:extended_text/extended_text.dart';
 import 'package:ff_annotation_route_core/ff_annotation_route_core.dart';
 import 'package:flutter/material.dart' hide CircularProgressIndicator;
+import 'package:flutter/material.dart';
 import 'package:loading_more_list/loading_more_list.dart';
 import 'package:pull_to_refresh_notification/pull_to_refresh_notification.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -103,6 +104,7 @@ class _PhotoViewDemoState extends State<PhotoViewDemo> {
                                 child: Row(
                                   children: <Widget>[
                                     ExtendedImage.network(
+                                      loadingWidget: const CircularProgressIndicator(),
                                       item.avatarUrl!,
                                       width: 40.0,
                                       height: 40.0,
@@ -119,6 +121,7 @@ class _PhotoViewDemoState extends State<PhotoViewDemo> {
                                           return null;
                                         }
                                         return ExtendedImage.asset(
+                                          loadingWidget: const CircularProgressIndicator(),
                                           'assets/avatar.jpg',
                                           imageCacheName: 'CropImage',
                                         );

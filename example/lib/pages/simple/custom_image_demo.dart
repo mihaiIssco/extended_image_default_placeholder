@@ -64,6 +64,7 @@ class _CustomImageDemoState extends State<CustomImageDemo>
               margin: const EdgeInsets.all(20),
               alignment: Alignment.center,
               child: ExtendedImage.network(
+                loadingWidget: const CircularProgressIndicator(),
                 url,
                 fit: BoxFit.contain,
                 width: 300,

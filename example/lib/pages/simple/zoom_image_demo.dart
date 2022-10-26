@@ -16,6 +16,7 @@ class ZoomImageDemo extends StatelessWidget {
   // you can handle gesture detail by yourself with key
   final GlobalKey<ExtendedImageGestureState> gestureKey =
       GlobalKey<ExtendedImageGestureState>();
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -36,6 +37,7 @@ class ZoomImageDemo extends StatelessWidget {
           ),
           Expanded(
             child: ExtendedImage.network(
+              loadingWidget: const CircularProgressIndicator(),
               imageTestUrl,
               fit: BoxFit.contain,
               mode: ExtendedImageMode.gesture,

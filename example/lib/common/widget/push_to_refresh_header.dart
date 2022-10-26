@@ -96,6 +96,7 @@ class RefreshImage extends StatelessWidget {
   Widget build(BuildContext context) {
     const double imageSize = 40;
     return ExtendedImage.asset(
+      loadingWidget: const CircularProgressIndicator(),
       'assets/flutterCandies_grey.png',
       width: imageSize,
       height: imageSize,

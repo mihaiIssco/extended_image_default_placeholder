@@ -17,6 +17,7 @@ Widget itemBuilder(BuildContext context, TuChongItem item, int index) {
               ? ListView.builder(
                   itemBuilder: (BuildContext c, int index) {
                     return ExtendedImage.network(
+                      loadingWidget: const CircularProgressIndicator(),
                       item.images![index].imageUrl,
                       fit: BoxFit.cover,
                       width: kIsWeb ? 200.0 : double.infinity,
@@ -28,6 +29,7 @@ Widget itemBuilder(BuildContext context, TuChongItem item, int index) {
                   itemCount: item.images!.length,
                 )
               : ExtendedImage.network(
+            loadingWidget: const CircularProgressIndicator(),
                   item.imageUrl,
                   fit: BoxFit.cover,
                   width: double.infinity,
@@ -112,6 +114,7 @@ Widget buildWaterfallFlowItem(
     children: <Widget>[
       Positioned.fill(
         child: ExtendedImage.network(
+          loadingWidget: const CircularProgressIndicator(),
           item.imageUrl,
           shape: BoxShape.rectangle,
           //clearMemoryCacheWhenDispose: true,
@@ -227,6 +230,7 @@ Widget buildBottomWidget(TuChongItem item, {bool showAvatar = true}) {
     children: <Widget>[
       if (showAvatar)
         ExtendedImage.network(
+          loadingWidget: const CircularProgressIndicator(),
           item.avatarUrl!,
           width: 25.0,
           height: 25.0,
@@ -239,6 +243,7 @@ Widget buildBottomWidget(TuChongItem item, {bool showAvatar = true}) {
               return null;
             }
             return ExtendedImage.asset(
+              loadingWidget: const CircularProgressIndicator(),
               'assets/avatar.jpg',
               imageCacheName: 'WaterfallFlow',
             );

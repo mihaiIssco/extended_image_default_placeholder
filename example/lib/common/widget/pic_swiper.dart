@@ -395,6 +395,7 @@ class _PicSwiperState extends State<PicSwiper> with TickerProviderStateMixin {
                 final String item = widget.pics![index].picUrl;
 
                 Widget image = ExtendedImage.network(
+                  loadingWidget: const CircularProgressIndicator(),
                   item,
                   fit: BoxFit.contain,
                   enableSlideOutPage: true,

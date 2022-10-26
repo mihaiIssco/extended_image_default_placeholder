@@ -18,6 +18,7 @@ class ExtendedImage extends StatefulWidget {
   ExtendedImage({
     Key? key,
     required this.image,
+    required this.loadingWidget,
     this.semanticLabel,
     this.excludeFromSemantics = false,
     this.width,
@@ -188,6 +189,7 @@ class ExtendedImage extends StatefulWidget {
   ///    Flutter.
   ExtendedImage.asset(
     String name, {
+        required this.loadingWidget,
     Key? key,
     AssetBundle? bundle,
     this.semanticLabel,
@@ -286,6 +288,7 @@ class ExtendedImage extends StatefulWidget {
   /// If [excludeFromSemantics] is true, then [semanticLabel] will be ignored.
   ExtendedImage.file(
     File file, {
+        required this.loadingWidget,
     Key? key,
     double scale = 1.0,
     this.semanticLabel,
@@ -376,6 +379,7 @@ class ExtendedImage extends StatefulWidget {
   /// If [excludeFromSemantics] is true, then [semanticLabel] will be ignored.
   ExtendedImage.memory(
     Uint8List bytes, {
+        required this.loadingWidget,
     Key? key,
     double scale = 1.0,
     this.semanticLabel,
@@ -444,6 +448,7 @@ class ExtendedImage extends StatefulWidget {
 
   ExtendedImage.network(
     String url, {
+        required this.loadingWidget,
     Key? key,
     this.semanticLabel,
     this.excludeFromSemantics = false,
@@ -530,6 +535,9 @@ class ExtendedImage extends StatefulWidget {
         assert(cacheWidth == null || cacheWidth > 0),
         assert(cacheHeight == null || cacheHeight > 0),
         super(key: key);
+
+  /// Loading Widget
+  final Widget loadingWidget;
 
   /// key of ExtendedImageGesture
   final Key? extendedImageGestureKey;
@@ -903,7 +911,7 @@ class _ExtendedImageState extends State<ExtendedImage>
           case LoadState.loading:
             current = Container(
               alignment: Alignment.center,
-              child: _getIndicator(context),
+              child: widget.loadingWidget,
             );
             break;
           case LoadState.completed:
@@ -1144,19 +1152,6 @@ class _ExtendedImageState extends State<ExtendedImage>
       current = _buildExtendedRawImage();
     }
     return current;
-  }
-
-  Widget _getIndicator(BuildContext context) {
-    return Theme.of(context).platform == TargetPlatform.iOS
-        ? const CupertinoActivityIndicator(
-            animating: true,
-            radius: 16.0,
-          )
-        : CircularProgressIndicator(
-            strokeWidth: 2.0,
-            valueColor:
-                AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-          );
   }
 
   ImageStreamListener _getListener({bool recreateListener = false}) {

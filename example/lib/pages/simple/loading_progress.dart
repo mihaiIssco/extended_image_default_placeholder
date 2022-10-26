@@ -22,6 +22,7 @@ class LoadingProgress extends StatelessWidget {
           ),
           Expanded(
             child: ExtendedImage.network(
+              loadingWidget: const CircularProgressIndicator(),
               'https://raw.githubusercontent.com/fluttercandies/flutter_candies/master/gif/extended_text/special_text.jpg',
               handleLoadingProgress: true,
               clearMemoryCacheIfFailed: true,
