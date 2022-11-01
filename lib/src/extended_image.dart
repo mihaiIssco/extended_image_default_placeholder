@@ -6,7 +6,6 @@ import 'package:extended_image/src/utils.dart';
 import 'package:extended_image_library/extended_image_library.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/semantics.dart';
 
 import 'editor/editor.dart';
@@ -189,7 +188,7 @@ class ExtendedImage extends StatefulWidget {
   ///    Flutter.
   ExtendedImage.asset(
     String name, {
-        required this.loadingWidget,
+    required this.loadingWidget,
     Key? key,
     AssetBundle? bundle,
     this.semanticLabel,
@@ -288,7 +287,7 @@ class ExtendedImage extends StatefulWidget {
   /// If [excludeFromSemantics] is true, then [semanticLabel] will be ignored.
   ExtendedImage.file(
     File file, {
-        required this.loadingWidget,
+    required this.loadingWidget,
     Key? key,
     double scale = 1.0,
     this.semanticLabel,
@@ -379,7 +378,7 @@ class ExtendedImage extends StatefulWidget {
   /// If [excludeFromSemantics] is true, then [semanticLabel] will be ignored.
   ExtendedImage.memory(
     Uint8List bytes, {
-        required this.loadingWidget,
+    required this.loadingWidget,
     Key? key,
     double scale = 1.0,
     this.semanticLabel,
@@ -448,7 +447,7 @@ class ExtendedImage extends StatefulWidget {
 
   ExtendedImage.network(
     String url, {
-        required this.loadingWidget,
+    required this.loadingWidget,
     Key? key,
     this.semanticLabel,
     this.excludeFromSemantics = false,
@@ -804,6 +803,7 @@ class ExtendedImage extends StatefulWidget {
 
   @override
   _ExtendedImageState createState() => _ExtendedImageState();
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
@@ -1110,29 +1110,33 @@ class _ExtendedImageState extends State<ExtendedImage>
   }
 
   Widget _buildExtendedRawImage() {
-    return ExtendedRawImage(
-      // Do not clone the image, because RawImage is a stateless wrapper.
-      // The image will be disposed by this state object when it is not needed
-      // anymore, such as when it is unmounted or when the image stream pushes
-      // a new image.
-      image: _imageInfo?.image,
-      debugImageLabel: _imageInfo?.debugLabel,
-      width: widget.width,
-      height: widget.height,
-      scale: _imageInfo?.scale ?? 1.0,
-      color: widget.color,
-      opacity: widget.opacity,
-      colorBlendMode: widget.colorBlendMode,
-      fit: widget.fit,
-      alignment: widget.alignment,
-      repeat: widget.repeat,
-      centerSlice: widget.centerSlice,
-      matchTextDirection: widget.matchTextDirection,
-      invertColors: _invertColors,
-      isAntiAlias: widget.isAntiAlias,
-      filterQuality: widget.filterQuality,
-      beforePaintImage: widget.beforePaintImage,
-      afterPaintImage: widget.afterPaintImage,
+    return AnimatedOpacity(
+      opacity: 1.0,
+      duration: const Duration(milliseconds: 100),
+      child: ExtendedRawImage(
+        // Do not clone the image, because RawImage is a stateless wrapper.
+        // The image will be disposed by this state object when it is not needed
+        // anymore, such as when it is unmounted or when the image stream pushes
+        // a new image.
+        image: _imageInfo?.image,
+        debugImageLabel: _imageInfo?.debugLabel,
+        width: widget.width,
+        height: widget.height,
+        scale: _imageInfo?.scale ?? 1.0,
+        color: widget.color,
+        opacity: widget.opacity,
+        colorBlendMode: widget.colorBlendMode,
+        fit: widget.fit,
+        alignment: widget.alignment,
+        repeat: widget.repeat,
+        centerSlice: widget.centerSlice,
+        matchTextDirection: widget.matchTextDirection,
+        invertColors: _invertColors,
+        isAntiAlias: widget.isAntiAlias,
+        filterQuality: widget.filterQuality,
+        beforePaintImage: widget.beforePaintImage,
+        afterPaintImage: widget.afterPaintImage,
+      ),
     );
   }
 
